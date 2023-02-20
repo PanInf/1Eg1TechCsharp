@@ -80,7 +80,7 @@ for (int i = 0; i < G.GetLength(0); i++)
 
 // List i ArrayList
 
-using System.Collections;
+/*using System.Collections;
 
 ArrayList AL = new ArrayList();
 AL.Add(5);
@@ -95,3 +95,36 @@ AL.Remove(5);
 Console.WriteLine(AL.Count);
 AL.RemoveAt(0);
 Console.WriteLine(AL.Count);
+
+// pętla po ArrayList - można stosować for i foreach
+
+for (int i = 0; i < AL.Count; i++)
+{
+    Console.Write(AL[i] + " ");
+}
+Console.WriteLine();
+
+foreach (var item in AL)
+{
+    Console.Write(item + " ");
+}
+Console.WriteLine();*/
+
+// jako ratunkowe może być...
+// enuma definiujemy w namespace a uruchamiamy w jakiejś klasie z metodą Main()
+namespace Enumki
+{
+    enum Dni { Pon, Wt, Sr, Czw, Pt };
+
+    class Alex
+    {
+        public static void Main()
+        {
+            Console.WriteLine(Dni.Pon);
+        }  
+    }  
+}
+
+
+
+
