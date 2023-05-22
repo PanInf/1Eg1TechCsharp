@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Transactions;
 // Sortowania przez porównanie
 
@@ -12,6 +13,7 @@ for (int i = 0; i < n; i++)
     T[i] = r.Next(1, 20);
     Console.Write(T[i] + " ");
 }
+Console.WriteLine("\n");
 
 // 1. Bąbelkowe (bubble sort)
 
@@ -63,35 +65,171 @@ for (int i = n-1; i > 0; i--)
 
 // 3. Przez wstawianie (insertion sort)
 
-int j, tempik;
+/*int j, tempik;
 for (int i = 1; i < n; i++)
 {
     tempik = T[i];
     j = i - 1;
     while (j >= 0 && tempik < T[j])
     {
-        T[j+1] = T[j];
+        T[j + 1] = T[j];
         j--;
     }
-    T[j+1] = tempik;
+    T[j + 1] = tempik;
+}*/
+
+// Sortowania w czasie liniowym - O(n)
+
+// 4. Przez zliczanie (counting sort)
+
+/*int[] L = new int[20];
+
+for (int i = 0; i < n; i++)
+{
+    L[T[i]]++;
 }
 
-// Sortowania w czasie liniowym
+for (int i = 0; i < L.Length; i++)
+{
+    Console.Write(L[i] + " ");
+}
 
-// 4. Przez zliczanie
+int j = 0;
+for (int i = 0; i < L.Length; i++)
+{
+    if (L[i] > 0)
+    {
+        for (int k = 0; k < L[i]; k++)
+        {
+            T[j] = i;
+            j++;
+        }   
+    }
+}
+
+Console.WriteLine("\n");*/
 
 // 5. Kubełkowe
+
+// pominięte - na później
 
 // Dziel i zwyciężaj 
 
 // 6. Przez scalanie
 
+
+/*void scalaj(int lewy, int prawy)  //0-3
+{
+    int[] pom = new int[n];
+    for (int a = 0; a < n; a++) pom[a] = T[a];
+    int i, i_lewy, i_prawy;
+    int srodek = (lewy + prawy) / 2;
+    i = lewy;  // indeks tabeli
+    i_lewy = lewy;
+    i_prawy = srodek + 1;
+
+    while (i_lewy <= srodek && i_prawy <= prawy)
+    {
+        if (pom[i_lewy] < pom[i_prawy])
+        {
+            T[i] = pom[i_lewy];
+            i_lewy++;
+        }
+        else
+        {
+            T[i] = pom[i_prawy];
+            i_prawy++;
+        }
+        i++;
+    }
+    if (i_lewy > srodek)
+        while (i_prawy <= prawy)
+        {
+            T[i] = pom[i_prawy];
+            i_prawy++;
+            i++;
+        }
+    else
+        while (i_lewy <= srodek)
+        {
+            T[i] = pom[i_lewy];
+            i_lewy++;
+            i++;
+        }
+}
+
+void sortuj(int lewy, int prawy)
+{
+    int srodek = (lewy + prawy) / 2;
+    if (lewy < srodek)
+    {
+        sortuj(lewy, srodek);
+    }
+    if (srodek + 1 < prawy)
+    {
+        sortuj(srodek + 1, prawy);
+    }
+    scalaj(lewy, prawy);
+}
+
+sortuj(0, n - 1);*/
+
 // 7. Quicksort Hoare
 
+/*void quicksortHoare(int lewy, int prawy)
+{
+    int i = lewy;
+    int j = prawy;
+    int tempik;
+    int pivot = T[(lewy + prawy) / 2];
+
+    while (i <= j)
+    {
+        while (T[i] < pivot) i++;
+        while (T[j] > pivot) j--;
+        if (i <= j)
+        {
+            tempik = T[i];
+            T[i] = T[j];
+            T[j] = tempik;
+            i++;
+            j--;
+        }
+    }
+    if (lewy < j) quicksortHoare(lewy, j);
+    if (prawy > i) quicksortHoare(i, prawy);
+}
+
+quicksortHoare(0, n - 1);
+*/
 // 8. Quicksort Lomuto
 
+/*void quicksortLomuto(int lewy, int prawy)
+{
+    int pivot = T[prawy];
+    int i = lewy;
+    int tempik;
+    for (int k = lewy; k < prawy; k++)
+    {
+        if (T[k] <= pivot)
+        {
+            tempik = T[i];
+            T[i] = T[k];
+            T[k] = tempik;
+            i++;
+        }
+    }
+    tempik = T[i];
+    T[i] = T[prawy];
+    T[prawy] = tempik;
+
+    if (lewy < i - 1) quicksortLomuto(lewy, i - 1);
+    if (prawy > i + 1) quicksortLomuto(i + 1, prawy);
+}
+
+quicksortLomuto(0, n - 1);
+*/
 // Wyświetlenie posortowanej tablicy
 
-Console.WriteLine("\n");
 for (int i = 0; i < n; i++)
     Console.Write(T[i] + " ");
