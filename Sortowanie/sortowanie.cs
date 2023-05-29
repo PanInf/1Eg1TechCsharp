@@ -109,9 +109,30 @@ for (int i = 0; i < L.Length; i++)
 
 Console.WriteLine("\n");*/
 
-// 5. Kubełkowe
+// 5. Grzebieniowe
 
-// pominięte - na później
+int tempik, gap = n;
+bool swaped = true;
+
+while (gap > 1 || swaped == true)
+{
+    gap = gap * 10 / 13;
+    if (gap == 0)
+    {
+        gap = 1;
+    }
+    swaped = false;
+    for (int i = 0; i < n - gap; i++)
+    {
+        if (T[i] > T[i+gap])
+        {
+            tempik = T[i];
+            T[i] = T[i + gap];
+            T[i + gap] = tempik;
+            swaped = true;
+        }
+    }
+}
 
 // Dziel i zwyciężaj 
 
